@@ -54,6 +54,8 @@ body {
     display: inline-block;
     line-height: 35vw;
     transition: all .2s;
+    background: black;
+    color: white;
 }
 
 h1 {
