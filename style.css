@@ -1,3 +1,20 @@
+/* variables */
+:root {
+    --bg-color: rgb(33,143,150);
+    --font-color: rgb(253,227,200);
+    --secondary-color:white;
+  }
+  
+  
+/* global & fonts */
+h1 {
+    font-size: 2rem;
+}
+p {
+    font-size: 0.7rem;
+    line-height: 3rem;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Zen Dots', cursive;
@@ -7,9 +24,11 @@ body, html {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: black;
-    color: white;
+    background: var(--bg-color);
+    color: var(--font-color);
 }
+
+/* contents */
 
 .container {
     width: 100vw;
@@ -24,6 +43,7 @@ body, html {
  text-align: center;
  padding-top: 20px;
 }
+
 .footer {
     position: fixed; 
     bottom: 0;
@@ -39,6 +59,7 @@ body, html {
     height: 3px;
     background:gray;
 }
+
 /* buttons */
 .button-container {
     padding-top: 25vh;
@@ -50,30 +71,30 @@ body, html {
 .button {
     width:35vw;
     height: 35vw;
-    border: 1px solid white;
+    border: 1px solid var(--font-color);
     border-radius: 50%;
     text-align: center;
     display: inline-block;
     line-height: 35vw;
     transition: all .2s;
-    background: black;
-    color: white;
+    background: var(--bg-color);;
+    color: var(--font-color);
 }
 
-h1 {
-    font-size: 2rem;
+#onions {
+    background: rgb(15,58,52);
 }
-p {
-    font-size: 0.7rem;
-    line-height: 3rem;
+
+#tomatoes {
+    background: rgb(253,101,98);
 }
 
 .button:hover {
     transform: scale(1.1);
-    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 40px rgba(253,227,200, 0.8);
 }
 
 .btn:active {
     transform: scale(1.1);
-    box-shadow: 0 5px 40px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 40px rgba(253,227,200, 0.8);
 }

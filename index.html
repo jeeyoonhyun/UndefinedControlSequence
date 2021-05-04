@@ -10,16 +10,44 @@
   </head>
 
   <body>
+    <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+
+      <script>
+        var socket = io('http://127.0.0.1:8081');
+        socket.on('connect', function() {
+              // sends to socket.io server the host/port of oscServer
+              // and oscClient
+              socket.emit('config',
+                  {
+                      server: {
+                          port: 3333,
+                          host: '127.0.0.1'
+                      },
+                      client: {
+                          port: 3334,
+                          host: '127.0.0.1'
+                      }
+                  }
+              );
+          });
+
+          socket.on('message', function(obj) {
+              var status = document.getElementById("status");
+              status.innerHTML = obj[0];
+              console.log(obj);
+          });
+      </script>
       <div class="container">
           <div class="header">
-            <h1>Undefined<br>Control<br>Sequence</h1>
+            <h1>undefined<br>control<br>sequence</h1>
             <p>remote controller</p>
+            <div id="status"></div>
           </div>
           <!-- <hr> -->
           <div class="body">
             <div class="button-container">
-              <button class ="button button-1" onclick="changeButton(left)">L</button>
-              <button class ="button button-2" onclick="changeButton(right)">R</button>
+              <button class ="button button-1" id="onions" onclick="changeButton(onions); socket.emit('message', 'onions');">onions</button>
+              <button class ="button button-2" id="tomatoes"onclick="changeButton(tomatoes); socket.emit('message', 'tomatoes');">tomatoes</button>
             </div>
             
           </div>
