@@ -1,62 +1,181 @@
 <!DOCTYPE html>
-  <head>
-    <title>index</title>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-  </head>
+<html>
 
-  <body>
-    <script src="http://127.0.0.1:8081/socket.io/socket.io.js"></script>
+<head>
+  <title>UndefinedControlSequence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+  <style>
+    /* variables */
+    :root {
+      --bg-color: blue;
+      --font-color: rgb(253, 227, 200);
+      --secondary-color: white;
+      --padding: 20px;
+    }
 
-      <script>
-        var socket = io('http://127.0.0.1:8081');
-        socket.on('connect', function() {
-              // sends to socket.io server the host/port of oscServer
-              // and oscClient
-              socket.emit('config',
-                  {
-                      server: {
-                          port: 3333,
-                          host: '127.0.0.1'
-                      },
-                      client: {
-                          port: 3334,
-                          host: '127.0.0.1'
-                      }
-                  }
-              );
-          });
 
-          socket.on('message', function(obj) {
-              var status = document.getElementById("status");
-              status.innerHTML = obj[0];
-              console.log(obj);
-          });
-      </script>
-      <div class="container">
-          <div class="header">
-            <h1>undefined<br>control<br>sequence</h1>
-            <p>remote controller</p>
-            <div id="status"></div>
-          </div>
-          <!-- <hr> -->
-          <div class="body">
-            <div class="button-container">
-              <button class ="button button-1" id="onions" onclick="changeButton(onions); socket.emit('message', '/1/onions 1');">onions</button>
-              <button class ="button button-2" id="tomatoes"onclick="changeButton(tomatoes); socket.emit('message', '/1/tomatoes 1');">tomatoes</button>
-            </div>
-            
-          </div>
-          <!-- <hr> -->
-          <div class="footer">
-            <div class = "footer-text"> - waiting command - </div>
-            <div class = "footer-line"></div>
-          </div>
+    /* global & fonts */
+    h2 {
+      font-size: 2rem;
+    }
+
+    a {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      color: inherit; 
+    }
+
+    p {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 0.7rem;
+      line-height: 1.3rem;
+      /* width: 60vw; */
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Zen Dots', cursive;
+    }
+
+    body {
+      width: 100%; 
+      height: 100%;
+      overflow: hidden;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      background: var(--bg-color);
+      color: var(--font-color);
+    }
+
+    body {
+      width: 100%;
+      margin: 0;
+      font-family: sans-serif;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* contents */
+    .container {
+      height: calc(100% - 20px);
+      overflow: auto;
+    }
+
+    .body {
+      padding: 0 0 100px var(--padding);
+    }
+    .header {
+      padding: 0 0 50px var(--padding);
+      /* margin-bottom: 200px; */
+    }
+
+    .section {
+      margin: 0 0 100px 0; 
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      height: 20px;
+      width: 100vw;
+      background: white;
+      color: black;
+    }
+
+    #launch {
+      position:absolute;
+      text-align: center;
+      right: 20vw;
+      top:45vh;
+      width: 20vw;
+      height:20vw;
+      border: 1px solid white;
+      display: inline-block;
+      line-height: 20vw;
+      transition: all .2s;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    #launch > *{
+      font-family: 'Zen Dots', cursive;
+      text-decoration: none;
+    }
+
+    .about {
+      position:absolute;
+      right: 5vw;
+      top:0px;
+      width:500px;
+    }
+
+    #launch:hover {
+      transform: scale(1.1);
+      background: rgb(253, 101, 98);
+      box-shadow: 0 10px 40px rgba(253, 227, 200, 0.8);
+      cursor:pointer;
+    }
+    
+    h1 {
+      font-size: 3rem;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>undefined<br>control sequence</h1>
+      <!-- <div id="status">waiting to be on air...</div> -->
+    </div>
+    <!-- <hr> -->
+    <div class="body">
+      <div>
+        <div id ="launch">
+         <a href=""> activate controller</a>
+        </div>
+        <div class="livestream section">
+          <h2>livestream</h2>
+          <div id="twitch-embed"></div>
+        </div>
+        <div class="trailer section">
+          <h2>trailer</h2>
+          <iframe src="https://player.vimeo.com/video/549766209" width="800" height="450" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+        <div class="about section">
+          <h2>about</h2>
+          <div id=""></div>
+          <p>A remote-controlled algorave livestream.</p>
+          <p>Undefined Control Sequence is a livestream that attempts to make live coding performances more on-the-fly. It lets the audience to control the video and sound from a 'remote controller' website and chat.
+            While the show is going on, the audience can press buttons in the 'remote controller' or enter commands in the chat. This controls which instruments or video source will be played on the performance. The performer improvises the live set based on the audiences' choice.
+            Commands from the website are passed on to the background video in TouchDesigner via Python, WebSocket and the Web Server DAT. Sound is performed in real-time with TidalCycles and SuperCollider.</p>
+          <p>by Jeeyoon Hyun / <a href="https://jeeyoonhyun.com/">jeeyoonhyun.com</a></p>
+        </div>
       </div>
-  </body>
-  <script type="text/javascript" src = "script.js"></script>
+    </div>
+    <div class="footer">
+      <div class="footer-text"> - on air - </div>
+      <div class="footer-line"></div>
+    </div>
+  </div>
+  
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  <script type="text/javascript">
+    new Twitch.Embed("twitch-embed", {
+      width: 800,
+      height: 450,
+      channel: "unconseq",
+      // parent: ["embed.example.com", "othersite.example.com"]
+    });
+  </script>
+</body>
 </html>
+
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>UCS Remote Controller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+  <style>
+    /* variables */
+    :root {
+      --bg-color: blue;
+      --font-color: rgb(253, 227, 200);
+      --secondary-color: white;
+    }
+
+
+    /* global & fonts */
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+      line-height: 3rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Zen Dots', cursive;
+    }
+    
+    .header > p {
+        line-height:2em;
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: var(--bg-color);
+      color: var(--font-color);
+    }
+
+    /* contents */
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+      overflow-y: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      color: black;
+    }
+
+    .footer-text {
+      padding-left: 5px;
+    }
+
+    .footer-line {
+      height: 3px;
+      background: gray;
+    }
+
+    /* buttons */
+    .button-container {
+      padding-top: 25vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      height: 60vh;
+    }
+
+    .button {
+      width: 35vw;
+      height: 35vw;
+      border: 1px solid var(--font-color);
+      /* border-radius: 50%; */
+      text-align: center;
+      display: inline-block;
+      line-height: 35vw;
+      transition: all .2s;
+      background: var(--bg-color);
+      ;
+      color: var(--font-color);
+    }
+
+    #onions {
+      background: rgb(15, 58, 52);
+    }
+
+    #tomatoes {
+      background: rgb(253, 101, 98);
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      background: rgb(253, 101, 98);
+      box-shadow: 0 10px 40px rgba(253, 227, 200, 0.8);
+      cursor:pointer;
+    }
+
+    .btn:active {
+      transform: scale(1.1);
+      background: yellow;
+      color:black;
+      box-shadow: 0 5px 40px rgba(253, 227, 200, 0.8);
+    }
+    .btn:target {
+      background: yellow;
+      color:black;
+    }
+    .btn:focus {
+      background: yellow;
+      color:black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>undefined<br>control<br>sequence</h1>
+      <p> * kimchi fried rice edition * <br />press buttons to cook videos...enjoy your meal! </p>
+      <div id="status"></div>
+    </div>
+    <!-- <hr> -->
+    <div class="body">
+      <div class="button-container">
+        <button class="button" id="button-1">fire</button>
+        <button class="button" id="button-2">oil</button>
+        <button class="button" id="button-3">onions</button>
+        <button class="button" id="button-4">kimchi</button>
+        <button class="button" id="button-5">rice</button>
+        <button class="button" id="button-6">egg</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-text"> - waiting command - </div>
+      <div class="footer-line"></div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      // This code should execute on all modern browsers
+      // To support legacy browsers i.e IE <= 11, see
+      // https://babeljs.io/en/repl
+
+      /****************** Here ******************/
+      const url = "65ae2ed86726.ngrok.io" // replace with ngrok url
+      /****************************************/
+      const socket = new WebSocket(`ws://${url}`)
+      const button1 = document.querySelector("#button-1")
+      const button2 = document.querySelector("#button-2")
+      const button3 = document.querySelector("#button-3")
+      const button4 = document.querySelector("#button-4")
+      const button5 = document.querySelector("#button-5")
+      const button6 = document.querySelector("#button-6")
+      const log = document.querySelector("#event_log")
+
+      /**** Post messages to the event log ****/
+      socket.onmessage = (event) => log.innerHTML = event.data
+
+      /**** Control Events ****/
+      button1.onclick = (e) =>  {
+        socket.send(JSON.stringify({ type: "ctrl:1" }))
+        status.innerText = 'command sent: fire';
+      }
+
+      button2.onclick = (e) =>  {
+        socket.send(JSON.stringify({ type: "ctrl:2" }))
+        status.innerText = 'command sent: oil';
+      }
+
+      button3.onclick = (e) =>  {
+        socket.send(JSON.stringify({ type: "ctrl:3" }))
+        status.innerText = 'command sent: onions';
+      }
+
+      button4.onclick = (e) =>  {
+        socket.send(JSON.stringify({ type: "ctrl:4" }))
+        status.innerText = 'command sent: kimchi';
+      }
+
+      button5.onclick = (e) =>  {
+        socket.send(JSON.stringify({ type: "ctrl:5" }))
+        status.innerText = 'command sent: rice';
+      }
+
+      button6.onclick = (e) =>  {
+        socket.send(JSON.stringify({ type: "ctrl:6" }))
+        status.innerText = 'command sent: egg';
+      }
+
+      
+    })()
+
+    let status = document.getElementsByClassName('footer-text')[0];
+  </script>
+</body>
+</html>
+
+
+

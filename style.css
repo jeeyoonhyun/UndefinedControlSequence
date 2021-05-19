@@ -79,6 +79,7 @@ body, html {
     transition: all .2s;
     background: var(--bg-color);;
     color: var(--font-color);
+    margin:50px;
 }
 
 #onions {

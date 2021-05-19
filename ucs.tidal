@@ -1,3 +1,69 @@
-d1 $s "bd sn"
+
+--                      __       ____ _                   __
+--   __  __ ____   ____/ /___   / __/(_)____   ___   ____/ /
+--  / / / // __ \ / __  // _ \ / /_ / // __ \ / _ \ / __  / 
+-- / /_/ // / / // /_/ //  __// __// // / / //  __// /_/ /  
+-- \__,_//_/ /_/ \__,_/ \___//_/  /_//_/ /_/_\___/ \__,_/   
+--   _____ ____   ____   / /_ _____ ____   / /              
+--  / ___// __ \ / __ \ / __// ___// __ \ / /               
+-- / /__ / /_/ // / / // /_ / /   / /_/ // /                
+-- \___/_\____//_/_/_/ \__//_/_ __\____//_/  _____ ___      
+--   / ___// _ \ / __ `// / / // _ \ / __ \ / ___// _ \     
+--  (__  )/  __// /_/ // /_/ //  __// / / // /__ /  __/     
+-- /____/ \___/ \__, / \__,_/ \___//_/ /_/ \___/ \___/      
+--                /_/                                       
+
 
 hush
+d1 silence
+
+-- Hi
+-- please go to the website I posted
+-- enjoy the show!!
+-- thanks
+
+d2 $ s "bd(5,8)" #gain 1.4
+d6 $ s "sn(3,8)" #gain 1.1
+d3 $every 4 rev $every 3 (#speed 1) $every 2 (#speed "-1 0.5 1.2") $s "break:8(3,8)" #legato 1 #pan "saw" #gain 1
+d4 $ n "0 10 11 3 [5 9] 4 7 0" #s "cpu:1" #squiz "0 1 2 3 4 5 6 7" #gain 1.1
+  #speed 1
+d5 $ n "0 10 11 3 [5 9] 4 7 0" #s "cpu:5" #squiz "5 4 0 5 1" #gain 1.1
+  #speed 1
+
+d2 $every 3 rev $every 2(#speed 1.3) $hurry 2 $speed "<3 0 3 2> 1 4 2" #sound "dream:0" |* speed "-2 <saw 4> 1.2" #gain 0.7
+
+d2 $every 4 (#speed 1.5) $speed "0 2 3 4" #sound "snare" |* speed "<-2 -1 1 2> 1.2 2" #gain 1.4
+
+d11 $speed "<[2 6] 4 [9 3] 2> 0 1 2" #sound "ber" |* speed "<-2 -3 -5> 1 2" #gain 0.9
+
+d1 $hurry 1 $speed "<0 2 5 1 2> 1 <3 [2 4]> 4" #sound "bskick" |* speed "<-2 -1 1 2> 1.2 2" #gain 1.3
+
+d2 $speed "<0 2 5 1 2> 1 <3 [2 4]> 4" #sound "bssnare" |* speed "<-2 -1 1 2> 1.2 2" #gain 1 #crush "0 4 2 3"
+
+d7 $speed "[2 4] <1 4> 4 <[5 2] 1>" #sound "clap" |* speed "<1 5 2> <-1 -5 -3>" 
+
+d8 $rev $speed "<0 1 -1.4 2> (-3,5) [3 -2] 0.5" #n "0 1 9 5" #sound "bsperc" |*speed "<[0.3 1 1.5]/3 [2 1.2 0.7]/3>" #gain 0.8
+hush
+
+d9 $hurry 1 $speed "<0 1 -1.4 2> (-3,5) [3 -2] 0.5" #sound "dream:2" |*speed "<[0.3 1 1.5]/3 [2 1.2 0.7]/3>" #gain 1.4
+
+hush
+
+d11 $speed "<-3 -0 -3 -2> -1 -4 -2" #sound "dream" |* speed "-2 <saw 4> 1.2" #gain 1.0
+d9 $speed "5 4 3 [3 2]" #sound "dream" |* speed "-2 <saw 4> 1.2" #gain 1.6
+
+d2 $every 3 rev $hurry 0.5 $speed "1 2 6 3 <[2 6] 4 [9 3] 2> 0 9" #sound "bsperc" |* speed "-2 saw 1.2"
+
+d10 $sound "noise:9 noise:7 noise:2 noise:5" #coarse "<2 4 5>" #speed "-2" #pan (slow 1.5 $ sine) #gain 1.1
+
+d10 $hurry 1 $n "~ ~ 0 ~ 2 2 ~" #coarse "9" #s "dream" #gain 0.9
+
+d4 $ squiz "0 1 2 3 4 5 6 [7 8]" #n "0 2 5 8 1 2 7" #s "cpu:1" #squiz "2 0 3 4 12" #gain 0.8
+
+d11 $every 3 rev $n "0 10 11 3 [5 9] 4 7 0" #s "cpu:2" #squiz "0 6 4 4 2" #crush "2 5 3" #speed 1 #vowel "a e i u" #gain 0.85 #pan (slow 1.5 $ sine)
+
+d3 $sound "break:8 break:2 break:4 break:1" #cut 1 #crush "4"
+
+d11 $ squiz "0 1 2 3 4 5 6 [7 8]" #s "cp" #gain 1.0
+
+d silence
